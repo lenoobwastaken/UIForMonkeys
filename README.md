@@ -6,4 +6,4 @@
 
 ### LICENSING & CREDITS:
 
-Lenoob#9366 for making everything
+lenoob#9366 for making everything
