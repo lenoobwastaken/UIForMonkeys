@@ -23,6 +23,8 @@ namespace uimonke
     {
         public static IEnumerator Uibullshit()
         {
+            //this is for anything that is not a clone aka not needed to be on update ¯\_(ツ)_/¯
+
             while (VRCUiManager.field_Private_Static_VRCUiManager_0 == null)
             {
                 yield return null;
@@ -40,6 +42,7 @@ namespace uimonke
         }
         public override void OnUpdate()
         {
+            //this is for everything that is OnUpdate ¯\_(ツ)_/¯
             GameObject Niggerhatethisad = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Carousel_Banners");
 
             GameObject.Destroy(Niggerhatethisad);
