@@ -7,3 +7,5 @@
 ### LICENSING & CREDITS:
 
 lenoob#9366 for making everything
+EvilEye Team besides josh and fish 
+(fuck you josh)
