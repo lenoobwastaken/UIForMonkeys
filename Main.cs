@@ -53,6 +53,7 @@ namespace uimonke
             GameObject.Destroy(Niggerhatethisad);
             try
             {
+                Application.targetFrameRate = 260;
 
                 var Players = UIForMonkeys.PlayerWrapper.GetAllPlayers();
                 for (int i = 0; i < Players.Length; i++)
