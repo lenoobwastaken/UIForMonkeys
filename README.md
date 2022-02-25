@@ -6,6 +6,6 @@
 
 ### LICENSING & CREDITS:
 
-lenoob#9366 for making everything
+lenoob#9366 for making most of the bullshit
 EvilEye Team besides josh and fish 
 (fuck you josh)
