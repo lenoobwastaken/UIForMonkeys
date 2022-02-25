@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UIForMonkeys;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -33,17 +34,38 @@ namespace uimonke
             GameObject.Destroy(wholesome);
             GameObject ee = GameObject.Find("");
         }
+        public VRC.Player player;
+
         public override void OnApplicationStart()
         {
             MelonCoroutines.Start(Uibullshit());
             MelonConsole.SetTitle("UI For All Of You Monkeys By lenoob#9366");
         }
+        private string UserID = "";
+
         public override void OnUpdate()
         {
             GameObject Niggerhatethisad = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Carousel_Banners");
 
             GameObject.Destroy(Niggerhatethisad);
+            try
+            {
 
+                var Players = UIForMonkeys.PlayerWrapper.GetAllPlayers();
+                for (int i = 0; i < Players.Length; i++)
+                {
+                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Glow").GetComponent<ImageThreeSlice>().color = new Color32(75, 0, 130, 255);
+                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Background").gameObject.SetActive(false);
+                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Text Container/Name").gameObject.GetComponent<TextMeshProUGUI>().color = new Color32(75, 0, 130, 255); 
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
 
             GameObject nigga = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/Header_H1/LeftItemContainer");
             if (Input.GetKeyDown(KeyCode.Escape) && nigga != null)
