@@ -60,7 +60,6 @@ namespace uimonke
                 {
                     Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Glow").GetComponent<ImageThreeSlice>().color = new Color32(75, 0, 130, 255);
                     Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Background").gameObject.SetActive(false);
-                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Text Container/Name").gameObject.GetComponent<TextMeshProUGUI>().color = new Color32(75, 0, 130, 255); 
                 }
 
 
