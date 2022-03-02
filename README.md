@@ -6,8 +6,8 @@
 
 ### LICENSING & CREDITS:
 
-lenoob#9366 for making most of the bullshit
-EvilEye Team besides josh and fish 
+- lenoob#9366 for making most of the bullshit
+- EvilEye Team for the player wrapper besides josh and fish 
 (fuck you josh)
 ### PREVIEW:
 https://media.discordapp.net/attachments/889956162487877713/946573043336093746/unknown.png
