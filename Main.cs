@@ -22,6 +22,71 @@ namespace uimonke
     }
     class uimonke : MelonMod
     {
+
+        public static string label = "";
+        public static float count;
+
+        public static IEnumerator GuiLabel()
+        {
+            while (true)
+            {
+                GUI.depth = 2;
+                while (true)
+                {
+
+
+                    if (Time.timeScale == 1)
+                    {
+
+                        yield return new WaitForSeconds(0.1f);
+
+
+                        count = (1 / Time.deltaTime);
+                        label = "FPS :" + (Mathf.Round(count));
+                    }
+                    else
+                    {
+                        label = "Pause";
+                    }
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+        }
+        public override void OnGUI()
+        {
+            GUI.Label(new Rect(5, 40, 100, 25), label);
+
+        }
+        public static IEnumerator Nigga()
+        {
+            while (true)
+            {
+                MelonConsole.SetTitle("M || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("My || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyB || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBa || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBal || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBall || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBalls || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBallsH || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBallsHu || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBallsHur || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+                MelonConsole.SetTitle("MyBallsHurt || By lenoob#9366                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ");
+                yield return new WaitForSecondsRealtime(1);
+
+            }
+
+        }
         public static IEnumerator Uibullshit()
         {
             //this is for anything that is not a clone aka not needed to be on update ¯\_(ツ)_/¯
@@ -31,20 +96,36 @@ namespace uimonke
                 yield return null;
             }
             GameObject Bruc = GameObject.Find("UserInterface/MenuContent/Backdrop/Backdrop/Background");
-            Bruc.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-            GameObject wholesome = GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingBackground_TealGradient/SkyCube_Baked");
-            GameObject.Destroy(wholesome);
-            GameObject ee = GameObject.Find("");
+            Bruc.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
+
+
         }
         public VRC.Player player;
+        public static IEnumerator uhhsomehere()
+        {
+            while (VRCUiManager.field_Private_Static_VRCUiManager_0 == null)
+            {
+                yield return null;
+            }
+            GameObject Curor = GameObject.Find("_Application/CursorManager/MouseArrow/VRCUICursorIcon");
+            Curor.GetComponent<SpriteRenderer>().color = new Color(255, 69, 0);
 
+
+        }
         public override void OnApplicationStart()
         {
             MelonCoroutines.Start(Uibullshit());
-            MelonConsole.SetTitle("UI For All Of You Monkeys By lenoob#9366");
-        }
-        private string UserID = "";
+            MelonCoroutines.Start(GuiLabel());
 
+            MelonCoroutines.Start(Nigga());
+
+        }
+         private string UserID = "";
+        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+        {
+            //might be terrible idgaf tbh
+            MelonCoroutines.Start(uhhsomehere());
+        }
         public override void OnUpdate()
         {
             //this is for everything that is OnUpdate ¯\_(ツ)_/¯
