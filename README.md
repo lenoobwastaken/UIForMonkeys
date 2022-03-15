@@ -1,7 +1,7 @@
 ### GENERAL INFORMATION:
 
 - A UI Mod Made for VRChat using MelonLoader To Improve the Ui
-
+- This Mod is Something I Made When I Was Bored Don't Take It Seriously
 ---
 
 ### LICENSING & CREDITS:
