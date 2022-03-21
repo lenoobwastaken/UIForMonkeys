@@ -2,23 +2,20 @@
 using System;
 using System.Collections;
 using TMPro;
-using UIForMonkeys;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+using UnityEngine.Networking;
 using Image = UnityEngine.UI.Image;
-
 namespace uimonke
 {
     public static class BuildInfo
     {
 
-        public const string Name = "FunnyUi"; 
-        public const string Description = "asdfl;asidfl;kasdklxfjlaksdjfklasd"; 
-        public const string Author = "Lenoob"; 
-        public const string Company = null; 
-        public const string Version = "4.2.0"; 
-        public const string DownloadLink = null; 
+        public const string Name = "FunnyUi";
+        public const string Description = "asdfl;asidfl;kasdklxfjlaksdjfklasd";
+        public const string Author = "Lenoob";
+        public const string Company = null;
+        public const string Version = "4.2.0";
+        public const string DownloadLink = null;
     }
     class uimonke : MelonMod
     {
@@ -120,11 +117,67 @@ namespace uimonke
             MelonCoroutines.Start(Nigga());
 
         }
-         private string UserID = "";
+        private string UserID = "";
+
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
+            GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingInfoPanel/InfoPanel_Template_ANIM/SCREEN/").SetActive(false);
+            GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingInfoPanel/InfoPanel_Template_ANIM/ICON").SetActive(false);
+            GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingInfoPanel/InfoPanel_Template_ANIM/TITLE").SetActive(false);
+            GameObject Particles = GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingBackground_TealGradient/_FX_ParticleBubbles/FX_snow");
+            Particles.GetComponent<ParticleSystem>().startColor = new Color32(255, 255, 255, 255);
             //might be terrible idgaf tbh
             MelonCoroutines.Start(uhhsomehere());
+            MelonCoroutines.Start(LoadingSong.StartSong());
+        }
+        public static class LoadingSong
+        {
+            private static AudioSource audioSource;
+
+            private static AudioSource audsourc2e;
+            public static IEnumerator StartSong()
+            {
+                string[] linksmusic = new string[]
+                {
+                    "https://cdn.discordapp.com/attachments/889956162487877713/954090914161250324/Rude_Babagee.ogg"
+                };
+
+                System.Random rand = new System.Random();
+                int randomis = rand.Next(linksmusic.Length);
+                string niggaaaaaaa = linksmusic[UnityEngine.Random.Range(0, linksmusic.Length)];
+
+                while (GameObject.Find("MenuContent/Popups/LoadingPopup/LoadingSound") == null)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+                while (GameObject.Find("LoadingBackground_TealGradient_Music/LoadingSound") == null)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+                GameObject Curor = GameObject.Find("_Application/CursorManager/MouseArrow/VRCUICursorIcon");
+                if (Curor == null)
+                {
+                    yield return new WaitForEndOfFrame();
+
+                }
+                audioSource = GameObject.Find("MenuContent/Popups/LoadingPopup/LoadingSound").GetComponentInChildren<AudioSource>(includeInactive: true);
+                audsourc2e = GameObject.Find("LoadingBackground_TealGradient_Music/LoadingSound").GetComponentInChildren<AudioSource>(includeInactive: true);
+                UnityWebRequest www = UnityWebRequest.Get(linksmusic[randomis] ?? niggaaaaaaa);
+                www.SendWebRequest();
+                while (!www.isDone)
+                {
+                    yield return null;
+                }
+                if (!www.isHttpError)
+                {
+                    AudioClip t = WebRequestWWW.InternalCreateAudioClipUsingDH(www.downloadHandler, www.url, stream: false, compressed: false, AudioType.OGGVORBIS);
+                    t.hideFlags |= HideFlags.DontUnloadUnusedAsset;
+                    audioSource.clip = t;
+                    audsourc2e.clip = t;
+                    audioSource.volume = 69;
+                    audsourc2e.volume = 69;
+                }
+            }
         }
         public override void OnUpdate()
         {
