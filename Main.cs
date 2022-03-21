@@ -105,10 +105,10 @@ namespace uimonke
                 yield return null;
             }
             GameObject Curor = GameObject.Find("_Application/CursorManager/MouseArrow/VRCUICursorIcon");
-            Curor.GetComponent<SpriteRenderer>().color = new Color(255, 69, 0);
+            Curor.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
 
             GameObject MutedMic = GameObject.Find("UserInterface/UnscaledUI/HudContent/Hud/VoiceDotParent/VoiceDotDisabled");
-            MutedMic.GetComponent<Image>().color = new Color32(0, 100, 255, 255);
+            MutedMic.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             GameObject UnMutedMic = GameObject.Find("UserInterface/UnscaledUI/HudContent/Hud/VoiceDotParent/VoiceDot");
             UnMutedMic.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
 
@@ -132,7 +132,7 @@ namespace uimonke
                 GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingInfoPanel/InfoPanel_Template_ANIM/ICON").SetActive(false);
                 GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingInfoPanel/InfoPanel_Template_ANIM/TITLE").SetActive(false);
                 GameObject Particles = GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingBackground_TealGradient/_FX_ParticleBubbles/FX_snow");
-                Particles.GetComponent<ParticleSystem>().startColor = new Color32(155, 0, 55, 255);
+                Particles.GetComponent<ParticleSystem>().startColor = new Color32(255, 255, 255, 255);
                 //might be terrible idgaf tbh
                 MelonCoroutines.Start(uhhsomehere());
                 MelonCoroutines.Start(LoadingSong.StartSong());
