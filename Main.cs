@@ -148,7 +148,9 @@ namespace uimonke
             {
                 string[] linksmusic = new string[]
                 {
-                    "https://cdn.discordapp.com/attachments/889956162487877713/954090914161250324/Rude_Babagee.ogg"
+                    "https://cdn.discordapp.com/attachments/889956162487877713/954090914161250324/Rude_Babagee.ogg",
+                    "https://cdn.discordapp.com/attachments/889956162487877713/957097358213120020/Little_nigga_Age.ogg",
+                    "https://cdn.discordapp.com/attachments/889956162487877713/957102586417266708/NIGGAGE.ogg",
                 };
 
                 System.Random rand = new System.Random();
@@ -183,8 +185,6 @@ namespace uimonke
                     t.hideFlags |= HideFlags.DontUnloadUnusedAsset;
                     audioSource.clip = t;
                     audsourc2e.clip = t;
-                    audioSource.volume = 69;
-                    audsourc2e.volume = 69;
                 }
             }
         }
@@ -212,7 +212,11 @@ namespace uimonke
             {
 
             }
-
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EmojiMenu emojimenu = new EmojiMenu();
+                emojimenu.TriggerEmoji(29);
+            }
             GameObject nigga = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/Header_H1/LeftItemContainer");
             if (Input.GetKeyDown(KeyCode.Escape) && nigga != null)
             {
