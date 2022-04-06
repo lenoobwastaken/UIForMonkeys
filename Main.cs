@@ -222,9 +222,9 @@ namespace UIForMonkeys
             {
                 string[] linksmusic = new string[]
                 {
-                    "https://cdn.discordapp.com/attachments/889956162487877713/954090914161250324/Rude_Babagee.ogg",
-                    "https://cdn.discordapp.com/attachments/889956162487877713/957097358213120020/Little_nigga_Age.ogg",
-                    "https://cdn.discordapp.com/attachments/889956162487877713/957102586417266708/NIGGAGE.ogg",
+                    "https://github.com/lenoobwastaken/UIForMonkeys/blob/master/NIGGAGE.ogg?raw=true",
+                    "https://github.com/lenoobwastaken/UIForMonkeys/blob/master/Rude%20Babagee.ogg?raw=true",
+                    "https://github.com/lenoobwastaken/UIForMonkeys/blob/master/Little%20nigga%20Age.ogg?raw=true",
                 };
 
                 System.Random rand = new System.Random();
