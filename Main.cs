@@ -251,6 +251,8 @@ namespace UIForMonkeys
                 www.SendWebRequest();
                 while (!www.isDone)
                 {
+                    MelonLogger.Msg("unxianstfu");
+
                     yield return null;
                 }
                 if (!www.isHttpError)

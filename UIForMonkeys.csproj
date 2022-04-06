@@ -541,6 +541,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="credits.txt" />
+    <Content Include="Little nigga Age.ogg" />
+    <Content Include="NIGGAGE.ogg" />
+    <Content Include="Rude Babagee.ogg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
