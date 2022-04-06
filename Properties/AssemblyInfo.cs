@@ -1,15 +1,15 @@
 ﻿using System.Reflection;
 using MelonLoader;
 
-[assembly: AssemblyTitle(uimonke.BuildInfo.Description)]
-[assembly: AssemblyDescription(uimonke.BuildInfo.Description)]
-[assembly: AssemblyCompany(uimonke.BuildInfo.Company)]
-[assembly: AssemblyProduct(uimonke.BuildInfo.Name)]
-[assembly: AssemblyCopyright("Created by " + uimonke.BuildInfo.Author)]
-[assembly: AssemblyTrademark(uimonke.BuildInfo.Company)]
-[assembly: AssemblyVersion(uimonke.BuildInfo.Version)]
-[assembly: AssemblyFileVersion(uimonke.BuildInfo.Version)]
-[assembly: MelonInfo(typeof(uimonke.uimonke), uimonke.BuildInfo.Name, uimonke.BuildInfo.Version, uimonke.BuildInfo.Author, uimonke.BuildInfo.DownloadLink)]
+[assembly: AssemblyTitle(UIForMonkeys.BuildInfo.Description)]
+[assembly: AssemblyDescription(UIForMonkeys.BuildInfo.Description)]
+[assembly: AssemblyCompany(UIForMonkeys.BuildInfo.Company)]
+[assembly: AssemblyProduct(UIForMonkeys.BuildInfo.Name)]
+[assembly: AssemblyCopyright("Created by " + UIForMonkeys.BuildInfo.Author)]
+[assembly: AssemblyTrademark(UIForMonkeys.BuildInfo.Company)]
+[assembly: AssemblyVersion(UIForMonkeys.BuildInfo.Version)]
+[assembly: AssemblyFileVersion(UIForMonkeys.BuildInfo.Version)]
+[assembly: MelonInfo(typeof(UIForMonkeys.uimonke), UIForMonkeys.BuildInfo.Name, UIForMonkeys.BuildInfo.Version, UIForMonkeys.BuildInfo.Author, UIForMonkeys.BuildInfo.DownloadLink)]
 [assembly: MelonColor()]
 
 [assembly: MelonGame(null, null)]

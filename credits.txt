@@ -1,0 +1,10 @@
+﻿Credits to WTFBlaze for his button API
+Credits to ReModCE for loadsprite from embeded resource
+Credits to Unixian for helping me with the openmenu patch
+Credits to EvilEye (still not josh and fish kys)
+Credits to LateNight cus i pasted loadspritefromdisk
+links to all (that i could find)
+https://github.com/wtfBlaze/
+https://github.com/requidev/
+https://github.com/notunixian/
+https://github.com/lenoobwastaken/ (the coolest one :sunglasses:)

@@ -1,12 +1,57 @@
-﻿using MelonLoader;
+﻿using Il2CppSystem.Text.RegularExpressions;
+using MelonLoader;
 using System;
 using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
 using TMPro;
+using UIForMonkeys;
+using UIForMonkeys.Modules;
 using UnityEngine;
 using UnityEngine.Networking;
 using Image = UnityEngine.UI.Image;
-namespace uimonke
+
+
+namespace UIForMonkeys
 {
+    public static class TextureThing
+    {
+        internal static Sprite LoadSpriteFromDisk(this string path)
+        {
+            bool flag = string.IsNullOrEmpty(path);
+            Sprite result;
+            if (flag)
+            {
+                result = null;
+            }
+            else
+            {
+                byte[] array = File.ReadAllBytes(path);
+                bool flag2 = array.Length == 0;
+                if (flag2)
+                {
+                    result = null;
+                }
+                else
+                {
+                    Texture2D texture2D = new Texture2D(512, 512);
+                    bool flag3 = !Il2CppImageConversionManager.LoadImage(texture2D, array);
+                    if (flag3)
+                    {
+                        result = null;
+                    }
+                    else
+                    {
+                        Sprite sprite = Sprite.CreateSprite(texture2D, new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height), new Vector2(0.5f, 0.5f), 100f, 0U, 0, default(Vector4), false);
+                        sprite.hideFlags = (HideFlags)32;
+                        result = sprite;
+                    }
+                }
+            }
+            return result;
+        }
+    }
     public static class BuildInfo
     {
 
@@ -19,6 +64,8 @@ namespace uimonke
     }
     class uimonke : MelonMod
     {
+
+        static readonly HttpClient client = new HttpClient();
 
         public static string label = "";
         public static float count;
@@ -49,6 +96,7 @@ namespace uimonke
                 }
             }
         }
+
         public override void OnGUI()
         {
             GUI.Label(new Rect(5, 40, 100, 25), label);
@@ -113,8 +161,34 @@ namespace uimonke
             UnMutedMic.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
 
         }
+        public static void nigga()
+        {
+            
+        }
+        public static string DebugPath = $"{Directory.GetCurrentDirectory()}" + "\\UiMonke";
         public override void OnApplicationStart()
         {
+            Patches.Inits();
+            if (!Directory.Exists($"{Directory.GetCurrentDirectory()}" + "\\UiMonke"))
+            {
+                Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}" + "\\UiMonke");
+            }
+            
+            var ourAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+            var resources = ourAssembly.GetManifestResourceNames();
+            foreach (var resource in resources)
+            {
+                if (!resource.EndsWith(".png"))
+                    continue;
+
+                var stream = ourAssembly.GetManifestResourceStream(resource);
+
+                using var ms = new MemoryStream();
+                stream.CopyTo(ms);
+                var resourceName = Regex.Match(resource, @"([a-zA-Z\d\-_]+)\.png").Groups[1].ToString();
+                UIForMonkeys.ResourceManager.LoadSprite("UiForMonkeys", resourceName, ms.ToArray());
+            }
+
             MelonCoroutines.Start(Uibullshit());
             MelonCoroutines.Start(GuiLabel());
 
@@ -198,12 +272,6 @@ namespace uimonke
             {
                 Application.targetFrameRate = 260;
 
-                var Players = UIForMonkeys.PlayerWrapper.GetAllPlayers();
-                for (int i = 0; i < Players.Length; i++)
-                {
-                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Glow").GetComponent<ImageThreeSlice>().color = new Color32(75, 0, 130, 255);
-                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Background").gameObject.SetActive(false);
-                }
 
 
             }
@@ -215,78 +283,12 @@ namespace uimonke
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EmojiMenu emojimenu = new EmojiMenu();
-                emojimenu.TriggerEmoji(29);
+                emojimenu.TriggerEmoji(16);
             }
             GameObject nigga = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/Header_H1/LeftItemContainer");
             if (Input.GetKeyDown(KeyCode.Escape) && nigga != null)
             {
-                GameObject MenuText = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Header_QuickActions/LeftItemContainer/Text_Title");
-                MenuText.GetComponent<TMPro.TextMeshProUGUI>().SetFaceColor(Color.gray);
-                GameObject SafetyBackground = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Worlds/Background");
-                SafetyBackground.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
-
-                GameObject bruh = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Avatars/Background");
-                bruh.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
-                GameObject niggafart = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Social/Background");
-                niggafart.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
-                GameObject pppppppp = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Safety/Background");
-                pppppppp.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
-                GameObject poopoo = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_GoHome/Background");
-                poopoo.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
-                GameObject yes = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_Respawn/Background");
-                yes.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
-                GameObject myassholeburns = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_SelectUser/Background");
-                myassholeburns.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
-                GameObject funnyipad = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/Header_H1/LeftItemContainer/Text_Title");
-                GameObject QmBack = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/BackgroundLayer01");
-                QmBack.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
-                funnyipad.GetComponent<TMPro.TextMeshProUGUI>().text = "FunnyUi";
-                funnyipad.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
-                funnyipad.GetComponent<TMPro.TextMeshProUGUI>().SetFaceColor(Color.white);
-                GameObject QuickLinks = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Header_QuickLinks/LeftItemContainer/Text_Title");
-                QuickLinks.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
-                GameObject QuickActions = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Header_QuickActions/LeftItemContainer/Text_Title");
-                QuickActions.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
-                GameObject SafetyIconA = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Worlds/Icon");
-                SafetyIconA.GetComponent<Image>().color = Color.white;
-                GameObject SafetyBackgroundsssssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_Emojis/Background");
-                SafetyBackgroundsssssss.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                GameObject SafetyText_H4A = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Worlds/Text_H4");
-                SafetyText_H4A.GetComponent<TextMeshProUGUI>().color = Color.white;
-
-                GameObject SafetyText_H4As = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Avatars/Text_H4");
-                SafetyText_H4As.GetComponent<TextMeshProUGUI>().color = Color.white;
-                GameObject SafetyText_H4Ass = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Social/Text_H4");
-                SafetyText_H4Ass.GetComponent<TextMeshProUGUI>().color = Color.white;
-                GameObject SafetyText_H4Asss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Safety/Text_H4");
-                SafetyText_H4Asss.GetComponent<TextMeshProUGUI>().color = Color.white;
-                GameObject SafetyText_H4Assss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_GoHome/Text_H4");
-                SafetyText_H4Assss.GetComponent<TextMeshProUGUI>().color = Color.white;
-                GameObject SafetyText_H4Asssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_Respawn/Text_H4");
-                SafetyText_H4Asssss.GetComponent<TextMeshProUGUI>().color = Color.white;
-                GameObject SafetyText_H4Assssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_SelectUser/Text_H4");
-                SafetyText_H4Assssss.GetComponent<TextMeshProUGUI>().color = Color.white;
-
-                GameObject SafetyText_H4Asssssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_Emojis/Text_H4");
-                SafetyText_H4Asssssss.GetComponent<TextMeshProUGUI>().color = Color.white;
-
-                GameObject SafetyIconAs = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Avatars/Icon");
-                SafetyIconAs.GetComponent<Image>().color = Color.white;
-                GameObject SafetyIconAss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Social/Icon");
-                SafetyIconAss.GetComponent<Image>().color = Color.white;
-                GameObject SafetyIconAsss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Safety/Icon");
-                SafetyIconAsss.GetComponent<Image>().color = Color.white;
-                GameObject SafetyIconAssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_GoHome/Icon");
-                SafetyIconAssss.GetComponent<Image>().color = Color.white;
-                GameObject SafetyIconAsssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_Respawn/Icon");
-                SafetyIconAsssss.GetComponent<Image>().color = Color.white;
-                GameObject SafetyIconAssssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_SelectUser/Icon");
-                SafetyIconAssssss.GetComponent<UnityEngine.UI.Image>().color = Color.white;
-                GameObject SafetyIconAsssssss = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_Emojis/Icon");
-                SafetyIconAsssssss.GetComponent<Image>().color = Color.white;
-
-                GameObject asdfasdjfioashdkjfhasdjkdfhasjikdfhnjakwd = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/Button_Emojis/Background");
-                asdfasdjfioashdkjfhasdjkdfhasjikdfhnjakwd.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 0, 0, 0);
+      
             }
         }
     }
