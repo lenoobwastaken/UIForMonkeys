@@ -21,7 +21,6 @@ namespace UIForMonkeys.Modules
         public static byte greenn  = 0;
         public static bool TalkinBen = false;
         public static bool UiToggle = false;
-        public static Sprite TalkingBenito = TextureThing.LoadSpriteFromDisk($"{Directory.GetCurrentDirectory()}" + "\\UiMonke\\Background.png");
         public static IEnumerator CustomBackground()
         {
             while (VRCUiManager.field_Private_Static_VRCUiManager_0 == null)
@@ -38,8 +37,13 @@ namespace UIForMonkeys.Modules
             }
             if (TalkinBen == true)
             {
-                GameObject QMMaintexture = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/BackgroundLayer01");
-                QMMaintexture.GetComponent<Image>().sprite = TalkingBenito;
+                try
+                {
+                    GameObject QMMaintexture = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/BackgroundLayer01");
+                    QMMaintexture.GetComponent<Image>().sprite = TextureThing.LoadSpriteFromDisk($"{Directory.GetCurrentDirectory()}" + "\\UiMonke\\Background.png"); ;
+
+                }
+                catch { }
             }
             else
             {
