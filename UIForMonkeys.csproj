@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Buttons.cs" />
+    <Compile Include="Discord.cs" />
     <Compile Include="Resource Loader.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Modules.cs" />
@@ -543,6 +544,7 @@
     <Content Include="credits.txt" />
     <Content Include="Little nigga Age.ogg" />
     <Content Include="NIGGAGE.ogg" />
+    <EmbeddedResource Include="Resources\discord-rpc.dll" />
     <Content Include="Rude Babagee.ogg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,13 +18,12 @@ using VRC.UI.Elements.Menus;
     ===============================
 */
 
-namespace UIForMonkeys
+namespace WTFBlaze
 {
     public class BlazesButtonAPI
     {
-        //totally not stolen from blaze credits to him btw ;)
         // Replace this with whatever you want. This is to prevent your buttons from overlapping with other mods buttons
-        public const string Identifier = "UiMonke";
+        public const string Identifier = "WTFBlaze";
 
         public static List<QMSingleButton> allQMSingleButtons = new List<QMSingleButton>();
         public static List<QMNestedButton> allQMNestedButtons = new List<QMNestedButton>();
@@ -35,7 +34,7 @@ namespace UIForMonkeys
 
     public class QMButtonBase
     {
-        public static GameObject button;
+        protected GameObject button;
         protected string btnQMLoc;
         protected string btnType;
         protected string btnTag;
@@ -70,7 +69,7 @@ namespace UIForMonkeys
             button.GetComponent<VRC.UI.Elements.Tooltips.UiTooltip>().field_Public_String_1 = buttonToolTip;
         }
 
-        public static void DestroyMe()
+        public void DestroyMe()
         {
             try
             {
@@ -368,10 +367,10 @@ namespace UIForMonkeys
                 {
                     if (btnQMLoc.StartsWith("Menu_"))
                     {
-                        APIUtils.GetQuickMenuInstance().prop_MenuStateController_0.Method_Public_Void_String_Boolean_0("QuickMenu" + btnQMLoc.Remove(0, 5));
+                        APIUtils.GetQuickMenuInstance().prop_MenuStateController_0.Method_Public_Void_String_Boolean_Boolean_0("QuickMenu" + btnQMLoc.Remove(0, 5));
                         return;
                     }
-                    APIUtils.GetQuickMenuInstance().prop_MenuStateController_0.Method_Public_Void_String_Boolean_0(btnQMLoc);
+                    APIUtils.GetQuickMenuInstance().prop_MenuStateController_0.Method_Public_Void_String_Boolean_Boolean_0(btnQMLoc);
                     return;
                 }
                 MenuPage.Method_Protected_Virtual_New_Void_0();
@@ -392,7 +391,7 @@ namespace UIForMonkeys
 
         public void OpenMe()
         {
-            APIUtils.GetQuickMenuInstance().prop_MenuStateController_0.Method_Public_Void_String_UIContext_Boolean_0(MenuPage.field_Public_String_0);
+            APIUtils.GetQuickMenuInstance().prop_MenuStateController_0.Method_Public_Void_String_UIContext_Boolean_TransitionType_0(MenuPage.field_Public_String_0);
         }
 
         public void CloseMe()

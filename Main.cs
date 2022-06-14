@@ -1,4 +1,5 @@
-﻿using Il2CppSystem.Text.RegularExpressions;
+﻿using Il2CppSystem.Net;
+using Il2CppSystem.Text.RegularExpressions;
 using MelonLoader;
 using System;
 using System.Collections;
@@ -134,7 +135,7 @@ namespace UIForMonkeys
         }
         public static IEnumerator Uibullshit()
         {
-            //this is for anything that is not a clone aka not needed to be on update ¯\_(ツ)_/¯
+            //this is for anything tht is not a clone aka not needed to be on update ¯\_(ツ)_/¯
 
             while (VRCUiManager.field_Private_Static_VRCUiManager_0 == null)
             {
@@ -168,6 +169,7 @@ namespace UIForMonkeys
         public static string DebugPath = $"{Directory.GetCurrentDirectory()}" + "\\UiMonke";
         public override void OnApplicationStart()
         {
+            MelonCoroutines.Start(Downloadthething());
             Patches.Inits();
             if (!Directory.Exists($"{Directory.GetCurrentDirectory()}" + "\\UiMonke"))
             {
@@ -196,7 +198,24 @@ namespace UIForMonkeys
 
         }
         private string UserID = "";
+        IEnumerator Downloadthething()
+        {
 
+
+            UnityWebRequest www = UnityWebRequest.Get("https://github.com/lenoobwastaken/UIForMonkeys/blob/master/discord-rpc.dll?raw=true");
+            
+            www.downloadHandler = new DownloadHandlerBuffer();
+            yield return www.SendWebRequest();
+            if (www.isNetworkError || www.isHttpError)
+            {
+                MelonLogger.Log(www.error);
+            }
+            else
+            {
+                byte[] results = www.downloadHandler.data;
+                File.WriteAllBytes($"{Directory.GetCurrentDirectory()}" + "\\discord-rpc.dll", results);
+            }
+        }
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
             try
@@ -273,8 +292,8 @@ namespace UIForMonkeys
             try
             {
                 Application.targetFrameRate = 260;
-
-
+                WebClient niogg = new WebClient();
+                
 
             }
 

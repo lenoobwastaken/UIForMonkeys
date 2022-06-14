@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Il2CppSystem.Reflection;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace UIForMonkeys
     {
         private static readonly Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
         private static readonly Dictionary<string, Sprite> Sprites = new Dictionary<string, Sprite>();
-
+         
         public static Texture2D LoadTexture(string prefix, string resourceName, byte[] bytes)
         {
             if (Textures.ContainsKey($"{prefix}.{resourceName}"))

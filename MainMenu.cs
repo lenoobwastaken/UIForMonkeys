@@ -9,12 +9,15 @@ using MelonLoader;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VRC;
+using VRC.SDKBase;
+using WTFBlaze;
 
 namespace UIForMonkeys.Modules
 {
     internal class Buttans : UiModules
     {
-   
+        public static bool swastica = false;
         public static Sprite fallback = ResourceManager.GetSprite("UiForMonkeys.fallback");
         public static byte redd = 0;
         public static byte bluee = 0;
@@ -50,7 +53,83 @@ namespace UIForMonkeys.Modules
 
             }
         }
+        public static bool Charlieisgay = false;
+        public static bool arroworbittoggle = false;
+        public static bool sovasticabool = false;
+        public static int arrowpoz = 0;
+        public static Vector3 Rotation;
 
+        public static Vector3 vec3poz;
+        public static IEnumerator sovastica()
+        {
+            if (swastica == false) yield return null;
+            VRC_Pickup[] array = ((IEnumerable<VRC_Pickup>)Resources.FindObjectsOfTypeAll<VRC_Pickup>()).ToArray<VRC_Pickup>();
+
+            int b = 0;
+            Vector3 a = ((Component)VRCPlayer.field_Internal_Static_VRCPlayer_0).transform.localPosition;
+            var io = array;
+            while (swastica == true)
+            {
+                try
+                {
+                    for (int index = 0; index < array.Length; ++index)
+                    {
+                        if (Networking.GetOwner(((Component)array[index]).gameObject) != Networking.LocalPlayer)
+                            Networking.SetOwner(Networking.LocalPlayer, ((Component)array[index]).gameObject);
+                    }
+
+                    io[0].transform.position = new Vector3(a.x, a.y, a.z);
+                    io[1].transform.position = new Vector3(a.x, a.y + 0.5f, a.z);
+
+                    io[2].transform.position = new Vector3(a.x, a.y + 1f, a.z);
+                    io[3].transform.position = new Vector3(a.x, a.y + 1.5f, a.z);
+                    io[4].transform.position = new Vector3(a.x, a.y + 2f, a.z);
+                    io[17].transform.position = new Vector3(a.x, a.y + 0.5f, a.z);
+                    io[18].transform.position = new Vector3(a.x, a.y + 1f, a.z);
+                    io[19].transform.position = new Vector3(a.x, a.y + 1.5f, a.z);
+                    io[20].transform.position = new Vector3(a.x, a.y, a.z);
+                    io[21].transform.position = new Vector3(a.x, a.y + 2.5f, a.z);
+                    io[22].transform.position = new Vector3(a.x, a.y + 3f, a.z);
+                    io[29].transform.position = new Vector3(a.x, a.y + 3.5f, a.z);
+
+
+
+                    io[5].transform.position = new Vector3(a.x + 0.5f, a.y + 1.5f, a.z);
+                    io[6].transform.position = new Vector3(a.x + 1f, a.y + 1.5f, a.z);
+                    io[7].transform.position = new Vector3(a.x - 0.5f, a.y + 1.5f, a.z);
+                    io[8].transform.position = new Vector3(a.x - 1f, a.y + 1.5f, a.z);
+                    io[27].transform.position = new Vector3(a.x + 1.5f, a.y + 1.5f, a.z);
+                    io[28].transform.position = new Vector3(a.x - 1.5f, a.y + 1.5f, a.z);
+
+                    io[9].transform.position = new Vector3(a.x + 1.5f, a.y + 1.7f, a.z);
+                    io[10].transform.position = new Vector3(a.x + 1.5f, a.y + 1.9f, a.z);
+                    io[23].transform.position = new Vector3(a.x + 1.5f, a.y + 2.1f, a.z);
+                    io[36].transform.position = new Vector3(a.x + 1.5f, a.y + 2.31f, a.z);
+
+                    io[11].transform.position = new Vector3(a.x - 1.5f, a.y + 1.3f, a.z);
+                    io[12].transform.position = new Vector3(a.x - 1.5f, a.y + 1.1f, a.z);
+                    io[24].transform.position = new Vector3(a.x - 1.5f, a.y + 1.3f, a.z);
+
+                    io[13].transform.position = new Vector3(a.x - 0.2f, a.y + 3f, a.z);
+                    io[14].transform.position = new Vector3(a.x - 0.4f, a.y + 3f, a.z);
+                    io[25].transform.position = new Vector3(a.x - 0.6f, a.y + 3f, a.z);
+                    io[33].transform.position = new Vector3(a.x - 0.8f, a.y + 3f, a.z);
+                    io[34].transform.position = new Vector3(a.x - 1f, a.y + 3f, a.z);
+
+                    io[15].transform.position = new Vector3(a.x + 0.2f, a.y, a.z);
+                    io[16].transform.position = new Vector3(a.x + 0.4f, a.y, a.z);
+                    io[26].transform.position = new Vector3(a.x + 0.6f, a.y, a.z);
+                    io[35].transform.position = new Vector3(a.x + 0.8f, a.y, a.z);
+
+                }
+                catch
+                {
+                }
+                yield return new WaitForSecondsRealtime(0.01f);
+            }
+
+
+        }
         public static IEnumerator CoolGui()
         {
             while (VRCUiManager.field_Private_Static_VRCUiManager_0 == null)
@@ -179,6 +258,35 @@ namespace UIForMonkeys.Modules
             {
             }
         }
+        public static IEnumerator charlieisfat()
+        {
+            
+            while (PlayerWrapper.GetLocalPlayer() == null)
+            {
+                yield return null;
+            }
+            var LocalPlayer = PlayerWrapper.GetLocalPlayer();
+            if (Charlieisgay == false)
+            {
+                yield return null;
+            }
+            while (Charlieisgay == true)
+            {
+
+
+                Networking.RPC(RPC.Destination.Others, LocalPlayer._vrcplayer.gameObject, "NetworkedQg", RpcParam);
+                Networking.RPC(RPC.Destination.Others, LocalPlayer._vrcplayer.gameObject, "NetworkedQuack", RpcParam);
+                Networking.RPC(RPC.Destination.Others, LocalPlayer._vrcplayer.gameObject, "NetworkedCowboy", RpcParam);
+                Networking.RPC(RPC.Destination.Others, LocalPlayer._vrcplayer.gameObject, "NetworkedExpection", RpcParam);
+                Networking.RPC(RPC.Destination.Others, LocalPlayer._vrcplayer.gameObject, "NetworkedAllah", RpcParam);
+
+                MelonLogger.Msg("Sent Da Trolling :trollface:");
+                yield return new WaitForSecondsRealtime(0.01f);
+
+            }
+            //                Networking.RPC(RPC.Destination.Others, LocalPlayer._vrcplayer.gameObject, "NetworkedCowboy", RpcParam);
+
+        }
 
         public static IEnumerator UpdateColor()
         {
@@ -266,12 +374,12 @@ namespace UIForMonkeys.Modules
             {
                 GameObject Particles = GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/3DElements/LoadingBackground_TealGradient/_FX_ParticleBubbles/FX_snow");
                 Particles.GetComponent<ParticleSystem>().startColor = new Color32(redd, greenn, bluee, 255);
-                var Players = UIForMonkeys.PlayerWrapper.GetAllPlayers();
-                for (int i = 0; i < Players.Length; i++)
+                // im #too good :sunglasses:
+                foreach (Player Players in PlayerManager.prop_PlayerManager_0.field_Private_List_1_Player_0)
                 {
 
-                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Glow").GetComponent<ImageThreeSlice>().color = new Color32(redd, greenn, bluee, 255);
-                    Players[i].transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Background").gameObject.SetActive(false);
+                    Players.transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Glow").GetComponent<ImageThreeSlice>().color = new Color32(redd, greenn, bluee, 255);
+                    Players.transform.Find("Player Nameplate/Canvas/Nameplate/Contents/Main/Background").gameObject.SetActive(false);
                 }
 
                 GameObject sdfasefwqd = GameObject.Find("UserInterface/MenuContent/Popups/LoadingPopup/ButtonMiddle");
@@ -330,6 +438,7 @@ namespace UIForMonkeys.Modules
             }
         }
 
+        internal static readonly Il2CppSystem.Object[] RpcParam = new Il2CppSystem.Object[0];
 
         public static  void InitializeButton()
         {
@@ -415,15 +524,26 @@ namespace UIForMonkeys.Modules
 
             }, "Change Color to Orange ");
             //Coming Soon!
-            var toggleButton = new QMToggleButton(menu, 1, 0, "Coming Soon!", delegate
+            var toggleButton = new QMToggleButton(menu, 1, 0, "Troll Munchen", delegate
             {
-                Console.WriteLine("Coming Soon: On!");
+                Charlieisgay = true;
+                MelonCoroutines.Start(charlieisfat());
+                Console.WriteLine("Troll on!");
             }, delegate
             {
-                Console.WriteLine("Coming Soon: Off!");
-            }, "Coming Soon!");
-
-            
+                Charlieisgay = false;
+                Console.WriteLine("Troll off!");
+            }, "Troll all munchen retards!");
+            var Test = new QMToggleButton(menu, 2, 0, "Swaswtijka", delegate
+            {
+                swastica = true;
+                MelonCoroutines.Start(sovastica());
+                Console.WriteLine("Swaswtijka on!");
+            }, delegate
+            {
+                swastica = false;
+                Console.WriteLine("Swaswtijka off!");
+            }, "Swaswtijka!");
 
         }
 

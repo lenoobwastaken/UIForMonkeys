@@ -11,7 +11,10 @@ namespace UIForMonkeys
     public static class PlayerWrapper
     {
         public static APIUser GetAPIUser(this VRC.Player player) => player.prop_APIUser_0;
-
-        public static Player[] GetAllPlayers() => PlayerManager.prop_PlayerManager_0.prop_ArrayOf_Player_0;
+        public static VRC.Player GetLocalPlayer()
+        {
+            return VRC.Player.prop_Player_0;
+        }
+        
     }
 }
