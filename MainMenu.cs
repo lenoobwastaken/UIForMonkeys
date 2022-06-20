@@ -60,76 +60,7 @@ namespace UIForMonkeys.Modules
         public static Vector3 Rotation;
 
         public static Vector3 vec3poz;
-        public static IEnumerator sovastica()
-        {
-            if (swastica == false) yield return null;
-            VRC_Pickup[] array = ((IEnumerable<VRC_Pickup>)Resources.FindObjectsOfTypeAll<VRC_Pickup>()).ToArray<VRC_Pickup>();
 
-            int b = 0;
-            Vector3 a = ((Component)VRCPlayer.field_Internal_Static_VRCPlayer_0).transform.localPosition;
-            var io = array;
-            while (swastica == true)
-            {
-                try
-                {
-                    for (int index = 0; index < array.Length; ++index)
-                    {
-                        if (Networking.GetOwner(((Component)array[index]).gameObject) != Networking.LocalPlayer)
-                            Networking.SetOwner(Networking.LocalPlayer, ((Component)array[index]).gameObject);
-                    }
-
-                    io[0].transform.position = new Vector3(a.x, a.y, a.z);
-                    io[1].transform.position = new Vector3(a.x, a.y + 0.5f, a.z);
-
-                    io[2].transform.position = new Vector3(a.x, a.y + 1f, a.z);
-                    io[3].transform.position = new Vector3(a.x, a.y + 1.5f, a.z);
-                    io[4].transform.position = new Vector3(a.x, a.y + 2f, a.z);
-                    io[17].transform.position = new Vector3(a.x, a.y + 0.5f, a.z);
-                    io[18].transform.position = new Vector3(a.x, a.y + 1f, a.z);
-                    io[19].transform.position = new Vector3(a.x, a.y + 1.5f, a.z);
-                    io[20].transform.position = new Vector3(a.x, a.y, a.z);
-                    io[21].transform.position = new Vector3(a.x, a.y + 2.5f, a.z);
-                    io[22].transform.position = new Vector3(a.x, a.y + 3f, a.z);
-                    io[29].transform.position = new Vector3(a.x, a.y + 3.5f, a.z);
-
-
-
-                    io[5].transform.position = new Vector3(a.x + 0.5f, a.y + 1.5f, a.z);
-                    io[6].transform.position = new Vector3(a.x + 1f, a.y + 1.5f, a.z);
-                    io[7].transform.position = new Vector3(a.x - 0.5f, a.y + 1.5f, a.z);
-                    io[8].transform.position = new Vector3(a.x - 1f, a.y + 1.5f, a.z);
-                    io[27].transform.position = new Vector3(a.x + 1.5f, a.y + 1.5f, a.z);
-                    io[28].transform.position = new Vector3(a.x - 1.5f, a.y + 1.5f, a.z);
-
-                    io[9].transform.position = new Vector3(a.x + 1.5f, a.y + 1.7f, a.z);
-                    io[10].transform.position = new Vector3(a.x + 1.5f, a.y + 1.9f, a.z);
-                    io[23].transform.position = new Vector3(a.x + 1.5f, a.y + 2.1f, a.z);
-                    io[36].transform.position = new Vector3(a.x + 1.5f, a.y + 2.31f, a.z);
-
-                    io[11].transform.position = new Vector3(a.x - 1.5f, a.y + 1.3f, a.z);
-                    io[12].transform.position = new Vector3(a.x - 1.5f, a.y + 1.1f, a.z);
-                    io[24].transform.position = new Vector3(a.x - 1.5f, a.y + 1.3f, a.z);
-
-                    io[13].transform.position = new Vector3(a.x - 0.2f, a.y + 3f, a.z);
-                    io[14].transform.position = new Vector3(a.x - 0.4f, a.y + 3f, a.z);
-                    io[25].transform.position = new Vector3(a.x - 0.6f, a.y + 3f, a.z);
-                    io[33].transform.position = new Vector3(a.x - 0.8f, a.y + 3f, a.z);
-                    io[34].transform.position = new Vector3(a.x - 1f, a.y + 3f, a.z);
-
-                    io[15].transform.position = new Vector3(a.x + 0.2f, a.y, a.z);
-                    io[16].transform.position = new Vector3(a.x + 0.4f, a.y, a.z);
-                    io[26].transform.position = new Vector3(a.x + 0.6f, a.y, a.z);
-                    io[35].transform.position = new Vector3(a.x + 0.8f, a.y, a.z);
-
-                }
-                catch
-                {
-                }
-                yield return new WaitForSecondsRealtime(0.01f);
-            }
-
-
-        }
         public static IEnumerator CoolGui()
         {
             while (VRCUiManager.field_Private_Static_VRCUiManager_0 == null)
